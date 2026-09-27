@@ -27,6 +27,9 @@ const EVENTS_FILE = 'sources/events.json';
 const CAPTURE_DIR = 'sources/sailwave.com/results';
 const OUT = 'as-published.config.json';
 const REPO_KEY = 'm15-ireland-archive';
+/** The workspace category the class files its events under. Applied on a
+ *  series' first ingest only; a refiling in the app is never undone. */
+const CATEGORY = 'M15 Ireland Events';
 
 interface ArchiveEvent {
   /** Permanent: the series id is UUIDv5 over it. */
@@ -98,6 +101,7 @@ function buildSeries(event: ArchiveEvent) {
     key: event.key,
     id: seriesIdForKey(REPO_KEY, event.key),
     publishedSlug: event.season,
+    category: CATEGORY,
     name: event.name,
     ...(venueOf(page.subtitle) ? { venue: venueOf(page.subtitle) } : {}),
     ...(event.startDate ? { startDate: event.startDate } : {}),
