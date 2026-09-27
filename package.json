@@ -1,0 +1,16 @@
+{
+  "name": "m15-ireland-archive",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Irish Melges 15 class published-results capture for Sail Scoring",
+  "scripts": {
+    "emit-as-published": "tsx scripts/emit-as-published-config.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "jsdom": "^29.1.0",
+    "tsx": "^4.22.4",
+    "typescript": "^5.9.2"
+  }
+}

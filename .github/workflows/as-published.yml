@@ -1,0 +1,120 @@
+# As-published archive ingest (ADR-010).
+#
+# On every push to main: re-emit the config, check it is committed and
+# current, regenerate the ingest documents, and push them to the production
+# workspace. Ingest is idempotent — the server no-ops unchanged documents by
+# content hash — so this can run on every push without churn. The idempotency
+# key is the document, though, so a render-only change in the app doesn't
+# re-publish; dispatch manually with `force` to re-apply after one.
+#
+# Checkout layout matters: this repo's scripts reuse the app's archive-kit by
+# relative import (`../../sailscoring/lib/archive-kit/…`), so the app must be
+# a *sibling* directory, not a subdirectory of this one.
+#
+#   $GITHUB_WORKSPACE/m15-ireland-archive   this repo
+#   $GITHUB_WORKSPACE/sailscoring           the app
+#
+# Secrets:
+#   APP_REPO_TOKEN              read access to sailscoring/sailscoring
+#   SAILSCORING_ARCHIVIST_TOKEN the m15 workspace's archivist API
+#                               key (workspace- and capability-scoped: it can
+#                               only write as-published series)
+#
+# Both secrets are gates as well as credentials: every step needing the app is
+# conditional on APP_REPO_TOKEN, and the push on SAILSCORING_ARCHIVIST_TOKEN,
+# so a fork or a secret-less clone degrades to a job that succeeds having done
+# nothing rather than one that fails red. Until the workspace is provisioned
+# and the secrets are set, that is exactly what this does.
+name: as-published
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sources/**'
+      - 'as-published.config.json'
+      - 'scripts/**'
+      - '.github/workflows/as-published.yml'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: >-
+          Re-apply every document even if unchanged. Needed after an app-side
+          render change: ingest is idempotent on the document hash, so a
+          render-only change (which leaves the document identical) won't
+          otherwise re-publish the pages.
+        type: boolean
+        default: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    env:
+      # The `secrets` context isn't available in `if:` expressions, so the
+      # gates below test the secrets through the job env instead: unset
+      # secret -> empty env var -> step skipped.
+      APP_REPO_TOKEN: ${{ secrets.APP_REPO_TOKEN }}
+      SAILSCORING_TOKEN: ${{ secrets.SAILSCORING_ARCHIVIST_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: m15-ireland-archive
+
+      - name: Report that this run has no credentials
+        if: env.APP_REPO_TOKEN == ''
+        run: |
+          echo "APP_REPO_TOKEN is not available here — skipping the ingest." >> "$GITHUB_STEP_SUMMARY"
+          echo "Expected on a fork or a clone; on sailscoring/m15-ireland-archive it means the secret is missing." >> "$GITHUB_STEP_SUMMARY"
+          echo "See the note at the top of .github/workflows/as-published.yml." >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/checkout@v7
+        if: env.APP_REPO_TOKEN != ''
+        with:
+          repository: sailscoring/sailscoring
+          token: ${{ secrets.APP_REPO_TOKEN }}
+          path: sailscoring
+
+      - uses: pnpm/action-setup@v6
+        if: env.APP_REPO_TOKEN != ''
+        with:
+          package_json_file: sailscoring/package.json
+
+      - uses: actions/setup-node@v7
+        if: env.APP_REPO_TOKEN != ''
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: sailscoring/pnpm-lock.yaml
+
+      - name: Install archive dependencies
+        if: env.APP_REPO_TOKEN != ''
+        working-directory: m15-ireland-archive
+        run: pnpm install --frozen-lockfile
+
+      - name: Install app dependencies
+        if: env.APP_REPO_TOKEN != ''
+        working-directory: sailscoring
+        run: pnpm install --frozen-lockfile
+
+      - name: Emit the as-published config
+        if: env.APP_REPO_TOKEN != ''
+        working-directory: m15-ireland-archive
+        run: pnpm emit-as-published
+
+      # The committed config is the reviewable artifact: if a capture change
+      # moves it, that should be committed, not applied silently on the way
+      # past.
+      - name: Config is committed and current
+        if: env.APP_REPO_TOKEN != ''
+        working-directory: m15-ireland-archive
+        run: git diff --exit-code as-published.config.json
+
+      - name: Generate ingest documents
+        if: env.APP_REPO_TOKEN != ''
+        working-directory: sailscoring
+        run: pnpm archive-generate ../m15-ireland-archive/as-published.config.json
+
+      - name: Push to the workspace
+        if: env.APP_REPO_TOKEN != '' && env.SAILSCORING_TOKEN != ''
+        working-directory: sailscoring
+        run: pnpm cli as-published push ../m15-ireland-archive/as-published --workspace m15 ${{ inputs.force && '--force' || '' }}
