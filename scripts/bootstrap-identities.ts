@@ -62,6 +62,11 @@ interface ManifestIdentity {
 interface Curation {
   unify?: Array<{ name: string; aliases?: string[]; note?: string }>;
   separate?: string[];
+  /** One published cell, by `[series, sail, slot]`, that names a sailor too
+   *  thinly to be recognised — a bare "John" — assigned to the person it is,
+   *  on evidence from elsewhere. Row-specific on purpose: an alias of "John"
+   *  would claim every John in every future event. */
+  assign?: Array<{ member: Member; name: string; note?: string }>;
 }
 
 interface Row {
@@ -132,7 +137,9 @@ function mintSlug(name: string, stableKey: string, taken: Set<string>): string {
 }
 
 /** Every person in every generated document, one row each. */
-function readRows(): { rows: Row[]; series: Record<string, string>; skipped: string[] } {
+function readRows(
+  assigned: Map<string, string>,
+): { rows: Row[]; series: Record<string, string>; skipped: string[] } {
   const series: Record<string, string> = {};
   const rows: Row[] = [];
   const skipped: string[] = [];
@@ -161,6 +168,11 @@ function readRows(): { rows: Row[]; series: Record<string, string>; skipped: str
         ...splitCrewCell(competitor.crewName).map((name) => ({ name, role: 'crew' as const })),
       ];
       for (const person of people) {
+        const as = assigned.get(memberKey(person.role === 'primary' ? [seriesKey, sail] : [seriesKey, sail, 'crew']));
+        if (as) {
+          rows.push({ seriesKey, season: doc.series.publishedSlug, boatId, sail, name: as, role: person.role, club });
+          continue;
+        }
         // A cell that names nobody ("TBC", "crew") or nobody recognisable (a
         // bare "John") is not a sailor — the app's reconcile pass skips the
         // same cells. Reported rather than published, so a corpus quietly
@@ -182,15 +194,20 @@ function main(): void {
       `no ${GENERATED_DIR} — run archive-generate over as-published.config.json first`,
     );
   }
-  const { rows, series, skipped } = readRows();
-
   const curation = existsSync(CURATION)
     ? (JSON.parse(readFileSync(CURATION, 'utf8')) as Curation)
     : {};
+  const assigned = new Map(
+    (curation.assign ?? []).map((a) => [memberKey(a.member), a.name]),
+  );
+  const { rows, series, skipped } = readRows(assigned);
   const separate = new Set((curation.separate ?? []).map(nameKey));
   const aliasTo = new Map<string, string>();
   const displayFor = new Map<string, string>();
   const noteFor = new Map<string, string>();
+  for (const a of curation.assign ?? []) {
+    if (a.note) noteFor.set(nameKey(a.name), a.note);
+  }
   for (const group of curation.unify ?? []) {
     const canonical = nameKey(group.name);
     displayFor.set(canonical, group.name);

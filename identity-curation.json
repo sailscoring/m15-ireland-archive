@@ -6,6 +6,9 @@
     "unify    - one sailor published under several spellings. `name` is the",
     "           display name; `aliases` are the other spellings as published.",
     "separate - a name that really is two different sailors.",
+    "assign   - one published cell, by [series, sail, slot], that names a",
+    "           sailor too thinly to recognise (a bare first name), given the",
+    "           person it is. Row-specific, never a global alias.",
     "",
     "Merge only on evidence. Over-linking puts another sailor's results in",
     "someone's record, which is worse than leaving two records apart."
@@ -19,5 +22,15 @@
       "note": "Published as \"Gary Haguhton\" at the 2026 Nationals; the same boat (1017, Crazy 8, RIYC) is Gary Haughton's at the 2026 Easterns."
     }
   ],
-  "separate": []
+  "separate": [],
+  "assign": [
+    {
+      "member": [
+        "m15-ireland-2026-nationals",
+        "1016"
+      ],
+      "name": "John Sheehy",
+      "note": "Published as helm \"John\", crew \"Sheehy\" at the 2026 Nationals; the same boat (1016, Flying Tiger, RSGYC) is John Sheehy's at the 2026 Easterns. The crew is not identified."
+    }
+  ]
 }
