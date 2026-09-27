@@ -33,6 +33,9 @@ on:
     paths:
       - 'sources/**'
       - 'as-published.config.json'
+      # The identity manifest is an ingest input too: an identity-only commit
+      # is a publishable change.
+      - 'identities.json'
       - 'scripts/**'
       - '.github/workflows/as-published.yml'
   workflow_dispatch:

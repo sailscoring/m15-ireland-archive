@@ -1,0 +1,480 @@
+{
+  "version": 1,
+  "series": {
+    "m15-ireland-2026-nationals": "90d24657-420f-55ca-90f6-34aa46b595aa"
+  },
+  "identities": [
+    {
+      "slug": "adam-hyland-zcvz",
+      "name": "Adam Hyland",
+      "club": "RSGYC / LDYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "101",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "alanna-lyttle-bnwv",
+      "name": "Alanna Lyttle",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1024",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "andrew-fowler-nrsx",
+      "name": "Andrew Fowler",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1015"
+        ]
+      ]
+    },
+    {
+      "slug": "barry-mccartin-htzt",
+      "name": "Barry McCartin",
+      "club": "GSC/HYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "565"
+        ]
+      ]
+    },
+    {
+      "slug": "bryan-byrne-6mgd",
+      "name": "Bryan Byrne",
+      "club": "GSC/HYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "565",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "chris-mcswiney-f9dc",
+      "name": "Chris McSwiney",
+      "club": "RIYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1020"
+        ]
+      ]
+    },
+    {
+      "slug": "christina-greenwood-29s3",
+      "name": "Christina Greenwood",
+      "club": "NYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "568",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "cian-lynch-xv6c",
+      "name": "Cian Lynch",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1015",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "conn-murphy-6ktu",
+      "name": "Conn Murphy",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1019"
+        ]
+      ]
+    },
+    {
+      "slug": "conor-o-toole-9t86",
+      "name": "Conor O Toole",
+      "club": "RIYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1018"
+        ]
+      ]
+    },
+    {
+      "slug": "cormac-farrelly-s7d9",
+      "name": "Cormac Farrelly",
+      "club": "HYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "635"
+        ]
+      ]
+    },
+    {
+      "slug": "dan-moran-zxcr",
+      "name": "Dan Moran",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "562"
+        ]
+      ]
+    },
+    {
+      "slug": "diane-nelson-yack",
+      "name": "Diane Nelson",
+      "club": "IPYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "686",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "fiachra-farrelly-p9m8",
+      "name": "Fiachra Farrelly",
+      "club": "HYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "798"
+        ]
+      ]
+    },
+    {
+      "slug": "gary-haughton-yhs6",
+      "name": "Gary Haughton",
+      "club": "RIYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1017"
+        ]
+      ],
+      "note": "Published as \"Gary Haguhton\" at the 2026 Nationals; the same boat (1017, Crazy 8, RIYC) is Gary Haughton's at the 2026 Easterns."
+    },
+    {
+      "slug": "greg-arrowsmith-m8cm",
+      "name": "Greg Arrowsmith",
+      "club": "RStGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1022",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "jack-fahy-mcth",
+      "name": "Jack Fahy",
+      "club": "RSGYC / LDYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "101"
+        ]
+      ]
+    },
+    {
+      "slug": "jack-mc-mahon-kce9",
+      "name": "Jack Mc Mahon",
+      "club": "HYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "802"
+        ]
+      ]
+    },
+    {
+      "slug": "jamie-malcolm-p35w",
+      "name": "Jamie Malcolm",
+      "club": "HYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "798",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "jamie-tingle-9gxc",
+      "name": "Jamie Tingle",
+      "club": "RCYC/RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1023"
+        ]
+      ]
+    },
+    {
+      "slug": "jonathan-o-connor-xqrz",
+      "name": "Jonathan O'Connor",
+      "club": "RIYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1020",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "justin-cullen-nxnp",
+      "name": "Justin Cullen",
+      "club": "HYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "635",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "kate-lyttle-c8u7",
+      "name": "Kate Lyttle",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "564",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "kohana-tanaka-sbjc",
+      "name": "Kohana Tanaka",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "562",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "luke-donagh-78mz",
+      "name": "Luke Donagh",
+      "club": "LRYC/RIYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1026",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "mike-huang-ete2",
+      "name": "Mike Huang",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1021",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "mike-zani-xn6x",
+      "name": "Mike Zani",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1021"
+        ]
+      ]
+    },
+    {
+      "slug": "natasha-hemeryck-apem",
+      "name": "Natasha Hemeryck",
+      "club": "HYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "802",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "paddy-oliver-h7w8",
+      "name": "Paddy Oliver",
+      "club": "IPYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "686"
+        ]
+      ]
+    },
+    {
+      "slug": "peter-carroll-tk2k",
+      "name": "Peter Carroll",
+      "club": "RIYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1018",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "richard-knatchbull-4szm",
+      "name": "Richard Knatchbull",
+      "club": "RIYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1017",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "roisin-collins-7y8x",
+      "name": "Roisin Collins",
+      "club": "RCYC/RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1023",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "ronan-murphy-d23q",
+      "name": "Ronan Murphy",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1019",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "rory-gathercole-c3h4",
+      "name": "Rory Gathercole",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "563",
+          "crew"
+        ]
+      ]
+    },
+    {
+      "slug": "ross-o-leary-rgm2",
+      "name": "Ross O'Leary",
+      "club": "RSGYC/CSC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "637"
+        ]
+      ]
+    },
+    {
+      "slug": "sean-donnelly-nr5m",
+      "name": "Sean Donnelly",
+      "club": "RStGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1022"
+        ]
+      ]
+    },
+    {
+      "slug": "theo-lyttle-nar3",
+      "name": "Theo Lyttle",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1024"
+        ]
+      ]
+    },
+    {
+      "slug": "tim-greenwood-zbxv",
+      "name": "Tim Greenwood",
+      "club": "NYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "568"
+        ]
+      ]
+    },
+    {
+      "slug": "tim-norwood-u7zy",
+      "name": "Tim Norwood",
+      "club": "LRYC/RIYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "1026"
+        ]
+      ]
+    },
+    {
+      "slug": "toby-hudson-fowler-8j4z",
+      "name": "Toby Hudson Fowler",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "564"
+        ]
+      ]
+    },
+    {
+      "slug": "tom-gathercole-jr4f",
+      "name": "Tom Gathercole",
+      "club": "RSGYC",
+      "members": [
+        [
+          "m15-ireland-2026-nationals",
+          "563"
+        ]
+      ]
+    }
+  ]
+}

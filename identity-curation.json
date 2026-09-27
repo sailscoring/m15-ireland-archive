@@ -1,0 +1,23 @@
+{
+  "_comment": [
+    "Hand-maintained input to `pnpm identities`, which treats one normalised",
+    "name as one sailor by default.",
+    "",
+    "unify    - one sailor published under several spellings. `name` is the",
+    "           display name; `aliases` are the other spellings as published.",
+    "separate - a name that really is two different sailors.",
+    "",
+    "Merge only on evidence. Over-linking puts another sailor's results in",
+    "someone's record, which is worse than leaving two records apart."
+  ],
+  "unify": [
+    {
+      "name": "Gary Haughton",
+      "aliases": [
+        "Gary Haguhton"
+      ],
+      "note": "Published as \"Gary Haguhton\" at the 2026 Nationals; the same boat (1017, Crazy 8, RIYC) is Gary Haughton's at the 2026 Easterns."
+    }
+  ],
+  "separate": []
+}

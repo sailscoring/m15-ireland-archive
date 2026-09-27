@@ -7,7 +7,7 @@ originally published are ingested and displayed faithfully — structured ranks
 plus verbatim display cells — and **never re-scored**.
 
 It is a deliberately minimal sibling of `irish-sailing-archive`: an event
-list, the verbatim captures, and one script. No identity manifest yet.
+list, the verbatim captures, an emit script and the identity bootstrap.
 
 ## What's here
 
@@ -17,6 +17,10 @@ sources/
   sailwave.com/results/      captured Sailwave pages (verbatim bytes)
 scripts/
   emit-as-published-config.ts  events + captures → as-published.config.json
+  bootstrap-identities.ts      generated rows → identities.json
+identity-curation.json       hand-maintained spelling merges and splits
+identities.json              the competitor-identity manifest (generated,
+                             committed; never edit by hand)
 as-published.config.json     generated ingest config (committed)
 .github/workflows/
   as-published.yml           emit → generate → push to the m15 workspace
@@ -33,14 +37,29 @@ as-published.config.json     generated ingest config (committed)
 2. Add an entry to `sources/events.json`. `title` is the page's `<h1>`
    exactly; dates go in only at the precision a published source states, with
    `datesFrom` saying which one.
-3. `pnpm emit-as-published`, and commit the capture, the event list and the
-   regenerated config together. Pushing to `main` ingests it.
+3. Emit, generate, and rebuild the identity manifest — it is built from the
+   generated rows, so the loop runs through the app:
 
-To check locally what CI will ingest:
+   ```
+   pnpm emit-as-published
+   (cd ../sailscoring && pnpm archive-generate ../m15-ireland-archive/as-published.config.json)
+   pnpm identities
+   (cd ../sailscoring && pnpm archive-generate ../m15-ireland-archive/as-published.config.json)
+   ```
 
-```
-(cd ../sailscoring && pnpm archive-generate ../m15-ireland-archive/as-published.config.json)
-```
+4. Commit the capture, the event list, the config and `identities.json`
+   together. Pushing to `main` ingests them.
+
+## Identities
+
+`pnpm identities` treats one normalised name as one sailor, helm and crew
+alike, and skips cells that name nobody recognisable ("TBC", a bare "John").
+Spellings that are one person go in `identity-curation.json`, on evidence —
+the same boat, sail number and club at another event is enough; a similar
+name alone is not. Slugs are public URLs, minted once and never moved.
+
+The class's live-scored events in the same workspace are linked to these
+identities by the app's reconcile pass, not by this repo.
 
 `key` and `slug` are permanent: the key seeds the series' UUIDv5 id, and the
 slug is a public URL. Changing either is a migration, not a rename.

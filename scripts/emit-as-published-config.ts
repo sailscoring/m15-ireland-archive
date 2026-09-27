@@ -134,7 +134,13 @@ function main(): void {
     .sort((a, b) => a.season.localeCompare(b.season) || a.slug.localeCompare(b.slug))
     .map(buildSeries);
 
-  writeFileSync(OUT, `${JSON.stringify({ version: 1, out: 'as-published', series }, null, 2)}\n`);
+  writeFileSync(OUT, `${JSON.stringify(
+      // The competitor-identity manifest, maintained by `pnpm identities`;
+      // archive-generate copies it alongside the documents for the ingest.
+      { version: 1, out: 'as-published', identities: 'identities.json', series },
+      null,
+      2,
+    )}\n`);
   console.log(`${series.length} series -> ${OUT}`);
 }
 

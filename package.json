@@ -5,7 +5,8 @@
   "description": "Irish Melges 15 class published-results capture for Sail Scoring",
   "scripts": {
     "emit-as-published": "tsx scripts/emit-as-published-config.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "identities": "tsx scripts/bootstrap-identities.ts"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

@@ -1,6 +1,7 @@
 {
   "version": 1,
   "out": "as-published",
+  "identities": "identities.json",
   "series": [
     {
       "key": "m15-ireland-2026-nationals",
